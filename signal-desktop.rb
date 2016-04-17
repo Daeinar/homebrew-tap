@@ -13,14 +13,14 @@ class SignalDesktop < Formula
   depends_on "node"
 
   def install
-      resource("nwjs").stage do
-          system "cp", "-r", "nwjs.app", "#{prefix}/Signal Desktop.app"
-      end
+    resource("nwjs").stage do
+      system "cp", "-r", "nwjs.app", "#{prefix}/Signal Desktop.app"
+    end
 
-      ENV.prepend_path "PATH", "#{Formula["node"].opt_libexec}/npm/bin"
-      system "npm", "install"
-      system "node_modules/grunt-cli/bin/grunt --force"
-      system "cp", "-r", "dist", "#{prefix}/Signal Desktop.app/Contents/Resources/app.nw"
-      ln_s "#{prefix}/Signal Desktop.app", "/Applications/Signal Desktop.app"
+    ENV.prepend_path "PATH", "#{Formula["node"].opt_libexec}/npm/bin"
+    system "npm", "install"
+    system "node_modules/grunt-cli/bin/grunt --force"
+    system "cp", "-r", "dist", "#{prefix}/Signal Desktop.app/Contents/Resources/app.nw"
+    ln_s "#{prefix}/Signal Desktop.app", "/Applications/Signal Desktop.app"
   end
 end
